@@ -1,0 +1,254 @@
+{
+  "tools": [
+    {
+      "toolSpec": {
+        "name": "market_structure_tool",
+        "description": "Analyzes market structure fundamentals: support/resistance levels, trend analysis, technical indicators (RSI, MACD, moving averages), price patterns, and market bias determination. Best for structural analysis, trend identification, and technical pattern recognition.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "ticker": {
+                "type": "string",
+                "description": "Stock ticker symbol"
+              },
+              "timeframe": {
+                "type": "string",
+                "description": "Timeframe for analysis",
+                "enum": ["1m", "5m", "15m", "30m", "1h", "4h", "1d"],
+                "default": "1d"
+              }
+            },
+            "required": ["ticker"]
+          }
+        }
+      }
+    },
+    {
+      "toolSpec": {
+        "name": "equity_order_flow_tool",
+        "description": "Provides live equity order flow: current market conditions, buying/selling pressure, institutional vs retail activity, volume imbalances, and recent trading patterns. Essential for answering 'what does the market look like now', 'current market state', 'buying or selling pressure', and 'institutional activity'.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "ticker": {
+                "type": "string",
+                "description": "Stock ticker symbol"
+              },
+              "history_minutes": {
+                "type": "integer",
+                "description": "History window in minutes",
+                "default": 10
+              }
+            },
+            "required": ["ticker"]
+          }
+        }
+      }
+    },
+    {
+      "toolSpec": {
+        "name": "options_order_flow_tool",
+        "description": "Delivers live options order flow: current options sentiment, PUT/CALL ratio, options positioning, directional bias from options activity. Essential for 'options sentiment', 'market overview', 'options activity', 'put call ratio', 'options positioning', and 'what does options flow show'.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "ticker": {
+                "type": "string",
+                "description": "Stock ticker symbol"
+              }
+            },
+            "required": ["ticker"]
+          }
+        }
+      }
+    },
+    {
+      "toolSpec": {
+        "name": "options_monitoring_tool",
+        "description": "Configures automated monitoring and alerting systems for specific option strike prices. Creates ongoing surveillance of particular strike ranges with notifications when unusual activity occurs. Used for setting up watchlists and automated alerts on specific strikes.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "ticker": {
+                "type": "string",
+                "description": "Stock ticker symbol"
+              },
+              "expiration": {
+                "type": "integer",
+                "description": "Expiration date in YYYYMMDD format"
+              },
+              "strike_range": {
+                "type": "array",
+                "items": {"type": "number"},
+                "description": "Array of strike prices to monitor"
+              },
+              "include_both_types": {
+                "type": "boolean",
+                "description": "Whether to monitor both PUT and CALL types",
+                "default": true
+              }
+            },
+            "required": ["ticker", "expiration", "strike_range"]
+          }
+        }
+      }
+    },
+    {
+      "toolSpec": {
+        "name": "greeks_tool_v2",
+        "description": "INITIATES options Greeks data collection system for delta, gamma, theta, vega calculations across strike ranges. This tool STARTS mathematical risk metrics analysis and must be used BEFORE retrieving Greeks data. Used for advanced options risk management and mathematical Greeks calculations.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "ticker": {
+                "type": "string",
+                "description": "Stock ticker symbol"
+              },
+              "dte": {
+                "type": "integer",
+                "description": "Days to expiration",
+                "default": 2
+              },
+              "range": {
+                "type": "integer",
+                "description": "Number of strikes to include above and below ATM",
+                "default": 3
+              }
+            },
+            "required": ["ticker"]
+          }
+        }
+      }
+    },
+    {
+      "toolSpec": {
+        "name": "greeks_metrics_tool",
+        "description": "RETRIEVES mathematical Greeks metrics (delta, gamma, theta, vega) from previously initiated data collection. Provides aggregated risk metrics, volatility skew analysis, and mathematical options positioning calculations. Requires prior initialization with greeks_tool_v2.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "ticker": {
+                "type": "string",
+                "description": "Stock ticker symbol"
+              },
+              "expiration": {
+                "type": "integer",
+                "description": "Specific expiration date as YYYYMMDD (optional)",
+                "default": null
+              }
+            },
+            "required": ["ticker"]
+          }
+        }
+      }
+    },
+    {
+      "toolSpec": {
+        "name": "financial_volume_profile",
+        "description": "Retrieves Volume Profile structure (POC, VAH, VAL, Nodes) for default granular timeframes (1m, 5m). Useful for identifying key support and resistance levels based on volume distribution.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "description": "The stock ticker symbol (e.g., SPY, AAPL)."
+              }
+            },
+            "required": ["symbol"]
+          }
+        }
+      }
+    },
+    {
+      "toolSpec": {
+        "name": "financial_technical_analysis",
+        "description": "Provides real-time technical indicators: RSI, MACD, moving averages, ATR, VWAP showing current momentum, trend direction, and market conditions. Essential for 'market overview', 'current market state', 'technical analysis', 'momentum', and 'trend direction'.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "description": "The stock ticker symbol (e.g., SPY, AAPL)."
+              }
+            },
+            "required": ["symbol"]
+          }
+        }
+      }
+    },
+    {
+      "toolSpec": {
+        "name": "financial_technical_zones",
+        "description": "Calculates precise entry/exit zones: high-probability support and resistance levels derived from volume profile and volatility analysis. Best for 'entry levels', 'exit points', 'stop loss levels', 'support resistance zones', and 'trading levels'.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "description": "The stock ticker symbol (e.g., SPY, AAPL)."
+              }
+            },
+            "required": ["symbol"]
+          }
+        }
+      }
+    },
+    {
+      "toolSpec": {
+        "name": "memory_context_tool",
+        "description": "Retrieves conversation history and previous analysis from memory storage. Essential for 'status check', 'is recommendation still valid', 'previous analysis', 'what did we discuss', and 'check my recommendation'.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "ticker": {
+                "type": "string",
+                "description": "Stock ticker symbol"
+              },
+              "context_type": {
+                "type": "string",
+                "description": "Type of context to retrieve",
+                "enum": ["recommendation", "analysis", "conversation"],
+                "default": "recommendation"
+              }
+            },
+            "required": ["ticker"]
+          }
+        }
+      }
+    },
+    {
+      "toolSpec": {
+        "name": "memory_recommendation_tool",
+        "description": "Retrieves previous recommendations and their original thesis from memory storage. Use when users ask about validation, status checks, or references to 'my recommendation' or previous analysis.",
+        "inputSchema": {
+          "json": {
+            "type": "object",
+            "properties": {
+              "ticker": {
+                "type": "string",
+                "description": "Stock ticker symbol"
+              },
+              "timeframe": {
+                "type": "string",
+                "description": "Timeframe for recommendation lookup",
+                "enum": ["today", "week", "all"],
+                "default": "today"
+              }
+            },
+            "required": ["ticker"]
+          }
+        }
+      }
+    }
+  ]
+}
