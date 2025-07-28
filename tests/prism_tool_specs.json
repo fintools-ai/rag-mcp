@@ -151,7 +151,7 @@
     {
       "toolSpec": {
         "name": "financial_volume_profile",
-        "description": "Retrieves Volume Profile structure (POC, VAH, VAL, Nodes) for default granular timeframes (1m, 5m). Useful for identifying key support and resistance levels based on volume distribution.",
+        "description": "Provides volume profile analysis: POC (Point of Control), VAH/VAL levels, and high-volume nodes on granular timeframes. Essential for 'volume levels', 'key levels', 'volume profile', 'POC levels', and 'support resistance from volume'.",
         "inputSchema": {
           "json": {
             "type": "object",
@@ -229,7 +229,7 @@
     {
       "toolSpec": {
         "name": "memory_recommendation_tool",
-        "description": "Retrieves previous recommendations and their original thesis from memory storage. Use when users ask about validation, status checks, or references to 'my recommendation' or previous analysis.",
+        "description": "Retrieves stored trading recommendations and original analysis thesis. Essential for 'validate my recommendation', 'is my trade still good', 'check my position', 'recommendation status', and 'what was my thesis'.",
         "inputSchema": {
           "json": {
             "type": "object",
