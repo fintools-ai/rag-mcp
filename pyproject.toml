@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag_mcp"
+version = "0.1.0"
+description = "Retrieval-Augmented Generation for Model Context Protocol tool selection"
+authors = [{name = "Sayantan"}]
+requires-python = ">=3.8"
+dependencies = [
+    "numpy>=1.21.0",
+    "sentence-transformers>=2.2.0",
+    "torch>=1.9.0",
+    "scikit-learn>=1.0.0",
+]
+
+[tool.setuptools]
+package-dir = {"rag_mcp" = "src"}
+packages = ["rag_mcp", "rag_mcp.core", "rag_mcp.models", "rag_mcp.storage", "rag_mcp.enhancers", "rag_mcp.specialized"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.yaml", "*.yml"]

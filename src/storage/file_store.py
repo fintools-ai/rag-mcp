@@ -7,7 +7,7 @@ import logging
 from pathlib import Path
 from typing import Dict, Any, Optional
 
-from src.storage.base_store import BaseStore
+from ..storage.base_store import BaseStore
 
 logger = logging.getLogger(__name__)
 

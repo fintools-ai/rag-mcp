@@ -5,8 +5,8 @@ Query enhancer that adds context and improves tool selection
 import logging
 from typing import Dict, Any, Optional
 
-from src.enhancers.trading_patterns import TradingPatternMatcher
-from src.enhancers.context_analyzer import ContextAnalyzer
+from ..enhancers.trading_patterns import TradingPatternMatcher
+from ..enhancers.context_analyzer import ContextAnalyzer
 
 logger = logging.getLogger(__name__)
 

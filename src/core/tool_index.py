@@ -8,7 +8,7 @@ import logging
 from typing import List, Dict, Any, Tuple, Optional
 from sklearn.metrics.pairwise import cosine_similarity
 
-from src.core.embeddings import EmbeddingModel
+from ..core.embeddings import EmbeddingModel
 
 logger = logging.getLogger(__name__)
 

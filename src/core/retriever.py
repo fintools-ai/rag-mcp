@@ -6,8 +6,8 @@ import logging
 from typing import List, Dict, Any, Optional
 from dataclasses import dataclass
 
-from src.core.embeddings import EmbeddingModel
-from src.core.tool_index import ToolIndex
+from ..core.embeddings import EmbeddingModel
+from ..core.tool_index import ToolIndex
 
 logger = logging.getLogger(__name__)
 

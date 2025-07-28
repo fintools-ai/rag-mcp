@@ -6,9 +6,9 @@ __version__ = "0.1.0"
 __author__ = "RAG-MCP Team"
 
 # Main exports
-from src.core.retriever import RAGMCPRetriever
-from src.specialized.trading_agent import TradingAgentRAGMCP
-from src.models.query_context import QueryContext
+from .core.retriever import RAGMCPRetriever
+from .specialized.trading_agent import TradingAgentRAGMCP
+from .models.query_context import QueryContext
 
 __all__ = [
     "RAGMCPRetriever",
